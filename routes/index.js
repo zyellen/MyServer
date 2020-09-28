@@ -42,9 +42,30 @@ router.post('/api/login_pwd', (req, res) => {
 
 
 
-router.post('/api/test', function(req, res, next) {
+router.post('/api/test', function(req, res) {
+  const user_name = req.body.username;
+  const user_pwd = req.body.password;
+
+  if(user_name=='116230'&&user_pwd=='111111'){
+    res.json({code: 20000,data:{roles:['admin'],name:'super'},message:'密码正确!',token:'admin-token'});
+  }else{
+    res.json({code: 210, message:'密码不正确!',token:'admin-token'});
+  }
+
   // res.render('index', { title: 'test' });
-  res.json({code: 200, message: '密码正确!',token:'123456789132456789'});
+  
+});
+
+router.get('/api/userinfo', function(req, res) {
+
+
+    res.json({code: 20000, message:'密码不正确!',data:{avatar: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+    introduction: "I am a super administrator",
+    name: "czy"},token:'admin-token'});
+ 
+
+  // res.render('index', { title: 'test' });
+  
 });
 
 module.exports = router;
